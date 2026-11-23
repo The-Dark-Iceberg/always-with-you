@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "Always With You · 记录助手",
+  "short_name": "Always With You",
+  "version": "0.2.0",
+  "description": "只告诉「一个时刻陪着你的AI」你正在看哪个网页（https 网址去掉参数、域名、标题、搜索词）。不读网页内容和输入框。数据只发给本机程序。",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5Pg1eI59fDPWUicF/yV9cyoBMxNJAB33qgl2smmT7aVykEQ5hKZyh6/416jAYa+Afup2I//v/kVyNoADpEiwp+XdUzhAsp2eaBoAox0MvhSUDbX940dHecyXVOhJ6Eq8kkDsxUgQXpHG8Qx0ilLSwggqkTPqcO6BkwF7fX0kG3ub/46Ze9pxh3QO9baVXE1z5VuTdCAH6KcLmRdrtwFdaWwOeAUZMhTfWEqyuN+ETYA8BnTbpwcq8tKByrNMBHjkKMq48HW0u3849goFWTq+xMF33eQ43GIZ9pa4BXM0JkTO4de6xUvAPw3oK1FaElPeVCJ2bhurkNNOrwMAwJVdWQIDAQAB",
+  "permissions": [
+    "tabs",
+    "alarms"
+  ],
+  "host_permissions": [
+    "http://127.0.0.1:47823/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "incognito": "not_allowed",
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}

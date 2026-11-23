@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AWY-tray-menu</title>
+<!-- 托盘右键菜单：一个无边框小窗口（desktop.py 负责在鼠标位置弹出、点别处自动收起） -->
+<link rel="stylesheet" href="fonts/lxgwwenkaiscreen.css">
+<link rel="stylesheet" href="css/app.css">
+<script src="js/i18n.js" defer></script>
+<script src="js/api.js" defer></script>
+<script src="js/sketch.js" defer></script>
+<script src="js/menu.js" defer></script>
+</head>
+<body class="tray-body">
+<div class="tray-menu" id="tray-menu">
+  <div class="tm-head">
+    <img src="img/tray.png" alt="" width="40" height="40">
+    <div>
+      <div class="tm-name" data-i18n="陪着你">陪着你</div>
+      <div class="small tm-status"><span class="dot" id="tm-dot"></span><span id="tm-status"></span></div>
+      <div class="small tm-next" id="tm-next"></div>
+    </div>
+  </div>
+  <div class="tm-items" role="menu">
+    <button class="tm-item" role="menuitem" data-cmd="show"><span class="ico" data-icon="window"></span><span data-i18n="打开主界面">打开主界面</span></button>
+    <button class="tm-item" role="menuitem" data-cmd="pause"><span class="ico" id="tm-pause-ico" data-icon="pause"></span><span id="tm-pause">暂停记录</span></button>
+    <button class="tm-item" role="menuitem" data-cmd="organize"><span class="ico" data-icon="spark"></span><span data-i18n="立即整理一次">立即整理一次</span></button>
+    <div class="tm-sep" role="separator"></div>
+    <button class="tm-item tm-quit" role="menuitem" data-cmd="quit"><span class="ico" data-icon="power"></span><span data-i18n="退出">退出</span></button>
+  </div>
+</div>
+</body>
+</html>

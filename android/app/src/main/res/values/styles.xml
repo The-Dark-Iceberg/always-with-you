@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 铅笔手绘：纸色底、墨色字、蓝铅笔强调色（和电脑端 ui/css/app.css 一样）。页面背景由 PaperDrawable 画 -->
+    <style name="AwyReadTheme" parent="android:style/Theme.DeviceDefault.DayNight">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowBackground">@color/paper</item>
+        <item name="android:colorAccent">@color/accent</item>
+        <item name="android:colorPrimary">@color/accent</item>
+        <item name="android:textColorPrimary">@color/ink</item>
+        <item name="android:textColorHint">@color/ink3</item>
+    </style>
+    <color name="paper">#F5F1E8</color>
+    <color name="ink">#2A2926</color>
+    <color name="ink3">#8C877C</color>
+    <color name="accent">#3F6184</color>
+</resources>

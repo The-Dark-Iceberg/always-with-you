@@ -1,0 +1,43 @@
+[project]
+name = "always-with-you"
+version = "0.4.2"
+description = "一个时刻陪着你的AI：本地个人记忆库（Windows 桌面程序）"
+license = "MIT"
+requires-python = ">=3.13,<3.14"
+dependencies = [
+    "cryptography>=50.0.2",
+    "httpx>=0.28.1",
+    "jieba>=0.42.1",
+    "mcp>=1.20",
+    "numpy>=2.5.5",
+    "onnxruntime>=1.32.0",
+    "pillow>=13.0.0",
+    "psutil>=7.2.2",
+    "pystray>=0.19.5",
+    "pywebview>=6.2.1",
+    "tokenizers>=0.23.3",
+    "tzdata>=2026.6",
+    "uvicorn>=0.54.0",
+    "winrt-runtime>=4.2.0",
+    "winrt-windows-foundation>=4!10.0.28000.2957",
+    "winrt-windows-media-control>=4!10.0.28000.2957",
+]
+
+[project.scripts]
+awy = "awy.__main__:main"
+
+[build-system]
+requires = ["uv_build>=0.13.9,<0.14.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "awy"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[dependency-groups]
+dev = [
+    "pyinstaller>=6.22.3",
+    "pytest>=9.2.0",
+]

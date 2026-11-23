@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 暗色：和电脑端暗色主题一样 -->
+    <color name="paper">#1C1B19</color>
+    <color name="ink">#EBE6DA</color>
+    <color name="ink3">#847E72</color>
+    <color name="accent">#93B2D2</color>
+</resources>

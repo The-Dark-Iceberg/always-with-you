@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AwyRead</string>
+    <string name="description">把手机上的一天带回你的电脑</string>
+    <string name="health_connect">Health Connect</string>
+    <string name="connection_unavailable">这台设备无法使用系统 Health Connect</string>
+    <string name="connection_needed">授权后即可在这里查看健康记录</string>
+    <string name="connection_granted">已授权 %1$d / %2$d 项</string>
+    <string name="connect">连接 Health Connect</string>
+    <string name="manage">管理读取权限</string>
+    <string name="privacy_title">健康数据使用说明</string>
+    <string name="privacy_body">AwyRead 从系统健康数据（Health Connect）读取步数、总消耗热量、心率和睡眠，用来在手机上按天显示。
+
+如果你在 AwyRead 里和自己的电脑（AlwaysWithYou）配了对，它还会把按小时汇总的步数、心率和每次睡眠的时长，在同一个 Wi-Fi 里加密传给那台电脑，由电脑整理成你的记忆。不会传给任何其他地方，也不经过任何服务器。
+
+你可以随时在系统的健康数据设置里撤销任意一项读取权限，或者在 AwyRead 里取消和电脑的配对。</string>
+    <string name="close">返回</string>
+    <string name="previous_day">前一天</string>
+    <string name="next_day">后一天</string>
+    <string name="previous_symbol">‹</string>
+    <string name="next_symbol">›</string>
+    <string name="today">今天 · %1$s</string>
+    <string name="select_date">选择日期，%1$s</string>
+    <string name="refresh">立即读取</string>
+    <string name="reading">正在读取</string>
+    <string name="read_at">读取时间 %1$s</string>
+    <string name="read_partial">%1$s · 部分项目读取失败</string>
+    <string name="not_granted">等待授权</string>
+    <string name="no_data">当天暂无记录</string>
+    <string name="failed">读取失败，请重试</string>
+    <string name="restricted">当前权限无法读取这段时间的记录</string>
+    <string name="steps">步数</string>
+    <string name="calories">总消耗热量</string>
+    <string name="heart_rate">心率</string>
+    <string name="sleep">睡眠</string>
+    <string name="step_value">%1$s 步</string>
+    <string name="system_step_total">系统汇总 · %1$s</string>
+    <string name="source_count">%1$d 个来源</string>
+    <string name="calorie_value">%1$s 千卡</string>
+    <string name="heart_value">%1$s 次/分</string>
+    <string name="heart_summary">最近 %1$s · 共 %2$s 个测量值</string>
+    <string name="sleep_value">%1$d 段记录</string>
+    <string name="sleep_time">%1$s 至 %2$s</string>
+    <string name="source">来源  %1$s</string>
+</resources>

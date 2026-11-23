@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一个时刻陪着你的AI</title>
+<!-- 霞鹜文楷 Screen（OFL 许可，常规体），放在程序里，运行时不联网；字体许可见 fonts/OFL.txt -->
+<link rel="stylesheet" href="fonts/lxgwwenkaiscreen.css">
+<link rel="stylesheet" href="css/app.css">
+<link rel="stylesheet" href="css/glass.css">
+<script src="js/i18n.js" defer></script>
+<script src="js/mock-data.js" defer></script>
+<script src="js/zones-zh.js" defer></script>
+<script src="js/api.js" defer></script>
+<script src="js/sketch.js" defer></script>
+<script src="js/paper-bg.js" defer></script>
+<script src="js/glass.js" defer></script>
+<script src="js/app.js" defer></script>
+</head>
+<body>
+<div class="shell">
+  <aside class="side">
+    <div class="brand">
+      <button class="brand-mark" id="avatar-btn" type="button" data-sketch="circle" title="点一下换成你的头像" aria-label="换头像"
+              data-i18n-title="点一下换成你的头像" data-i18n-aria="换头像">
+        <span class="avatar-slot" id="avatar-slot"><span class="ico" data-icon="heart"></span></span>
+      </button>
+      <input type="file" id="avatar-file" accept="image/*" hidden>
+      <div class="label">
+        <div class="brand-name" data-i18n="陪着你">陪着你</div>
+        <div class="brand-sub" data-i18n="一个时刻陪着你的AI">一个时刻陪着你的AI</div>
+      </div>
+    </div>
+    <button class="side-toggle" id="side-toggle" type="button" aria-label="收起侧边栏" title="收起侧边栏">
+      <span class="ico" data-icon="side-close"></span>
+    </button>
+    <nav class="nav" id="nav"></nav>
+    <div class="side-foot" id="side-foot"></div>
+  </aside>
+  <main class="main" id="app"></main>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

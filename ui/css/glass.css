@@ -1,0 +1,331 @@
+/* 液态玻璃主题（决定 0013）。只在 <html data-skin="glass"> 时生效；铅笔手绘主题不受影响。
+   折射、高光、拉伸这些动的部分在 js/glass.js。 */
+
+/* ---------- 颜色：亮（默认）/ 暗（跟随系统，或在主题面板里选） ---------- */
+html[data-skin="glass"] {
+  --gl-base: #e9e3fa;
+  --gl-b-core: rgba(255, 255, 255, .98);
+  --gl-b-mid: rgba(228, 218, 255, .92);
+  --gl-b-edge: rgba(168, 142, 250, .78);
+  --gl-b-rim: rgba(255, 255, 255, 1);
+  --gl-b-shade: rgba(112, 80, 228, .38);
+  --ink: #1f1a2e; --ink-2: rgba(31, 26, 46, .70); --ink-3: rgba(31, 26, 46, .50);
+  --accent: #7656e8; --warm: #d14d72; --ok: #22a77c;
+  --gl-accent: #8a6cf7;
+  --hatch: rgba(118, 86, 232, .10); --hatch-strong: rgba(118, 86, 232, .20);
+  --paper: rgba(252, 250, 255, .92); --paper-2: rgba(118, 86, 232, .08);
+  --gl-tint-c: #ffffff;
+  --gl-plate: rgba(255, 255, 255, calc(.16 + .30 * var(--gl-veil, .5)));
+  --gl-sheet-tint: rgba(255, 255, 255, calc(.06 + .32 * var(--gl-veil, .5)));
+  --gl-ctl-tint: rgba(255, 255, 255, calc(.12 + .26 * var(--gl-veil, .5)));
+  --gl-float-tint: rgba(250, 248, 255, calc(.48 + .40 * var(--gl-veil, .5)));
+  --gl-rim-a: rgba(255, 255, 255, .95); --gl-rim-b: rgba(255, 255, 255, .26);
+  --gl-shade: rgba(72, 48, 150, .16);
+  --gl-glow: rgba(255, 255, 255, .70);
+  --gl-hi: rgba(255, 255, 255, .55);
+  --font: "Segoe UI Variable Text", "Segoe UI", "Microsoft YaHei UI", "PingFang SC", system-ui, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  html[data-skin="glass"]:not([data-glass-mode="light"]) {
+    --gl-base: #100c20;
+    --gl-b-core: rgba(156, 130, 245, .70);
+    --gl-b-mid: rgba(108, 80, 206, .56);
+    --gl-b-edge: rgba(72, 48, 164, .52);
+    --gl-b-rim: rgba(222, 208, 255, .60);
+    --gl-b-shade: rgba(0, 0, 0, .40);
+    --ink: #f2effa; --ink-2: rgba(242, 239, 250, .74); --ink-3: rgba(242, 239, 250, .50);
+    --accent: #b3a0ff; --warm: #ff8fae; --ok: #6fe0b4;
+    --gl-accent: #9d84ff;
+    --hatch: rgba(200, 186, 255, .10); --hatch-strong: rgba(200, 186, 255, .20);
+    --paper: rgba(30, 24, 52, .92); --paper-2: rgba(200, 186, 255, .08);
+    --gl-tint-c: #1e1834;
+    --gl-plate: rgba(40, 32, 70, calc(.16 + .30 * var(--gl-veil, .5)));
+    --gl-sheet-tint: rgba(26, 20, 48, calc(.14 + .36 * var(--gl-veil, .5)));
+    --gl-ctl-tint: rgba(60, 50, 100, calc(.10 + .26 * var(--gl-veil, .5)));
+    --gl-float-tint: rgba(30, 24, 54, calc(.52 + .40 * var(--gl-veil, .5)));
+    --gl-rim-a: rgba(255, 255, 255, .55); --gl-rim-b: rgba(255, 255, 255, .08);
+    --gl-shade: rgba(0, 0, 0, .42);
+    --gl-glow: rgba(255, 255, 255, .30);
+    --gl-hi: rgba(255, 255, 255, .26);
+    color-scheme: dark;
+  }
+}
+html[data-skin="glass"][data-glass-mode="dark"] {
+  --gl-base: #100c20;
+  --gl-b-core: rgba(156, 130, 245, .70);
+  --gl-b-mid: rgba(108, 80, 206, .56);
+  --gl-b-edge: rgba(72, 48, 164, .52);
+  --gl-b-rim: rgba(222, 208, 255, .60);
+  --gl-b-shade: rgba(0, 0, 0, .40);
+  --ink: #f2effa; --ink-2: rgba(242, 239, 250, .74); --ink-3: rgba(242, 239, 250, .50);
+  --accent: #b3a0ff; --warm: #ff8fae; --ok: #6fe0b4;
+  --gl-accent: #9d84ff;
+  --hatch: rgba(200, 186, 255, .10); --hatch-strong: rgba(200, 186, 255, .20);
+  --paper: rgba(30, 24, 52, .92); --paper-2: rgba(200, 186, 255, .08);
+  --gl-tint-c: #1e1834;
+  --gl-plate: rgba(40, 32, 70, calc(.16 + .30 * var(--gl-veil, .5)));
+  --gl-sheet-tint: rgba(26, 20, 48, calc(.14 + .36 * var(--gl-veil, .5)));
+  --gl-ctl-tint: rgba(60, 50, 100, calc(.10 + .26 * var(--gl-veil, .5)));
+  --gl-float-tint: rgba(30, 24, 54, calc(.52 + .40 * var(--gl-veil, .5)));
+  --gl-rim-a: rgba(255, 255, 255, .55); --gl-rim-b: rgba(255, 255, 255, .08);
+  --gl-shade: rgba(0, 0, 0, .42);
+  --gl-glow: rgba(255, 255, 255, .30);
+  --gl-hi: rgba(255, 255, 255, .26);
+  color-scheme: dark;
+}
+
+/* 高光强弱要能做过渡，先登记成数字 */
+@property --gl-hov { syntax: "<number>"; inherits: false; initial-value: 0; }
+
+/* ---------- 铅笔主题的东西在玻璃主题里都收起来 ---------- */
+html[data-skin="glass"] #paper-bg,
+html[data-skin="glass"] .sk-svg { display: none !important; }
+html[data-skin="glass"] body::before { display: none; }
+html[data-skin="glass"] .ico g[filter] { filter: none; }
+html[data-skin="glass"] .ico .p2 { display: none; }
+html[data-skin="glass"] .ico .p1 { stroke-width: 2.6; }
+html[data-skin="glass"] .btn.primary::before,
+html[data-skin="glass"] .nav a.on::before { display: none; }   /* 斜线底纹；聊天气泡的 ::before 换成玻璃亮边（见 .gl-plate） */
+
+html[data-skin="glass"] { background: var(--gl-base); }
+html[data-skin="glass"] body { overflow: hidden; letter-spacing: 0; line-height: 1.65; font-size: 15px; }
+html[data-skin="glass"] h1 { font-weight: 650; font-size: 1.85rem; letter-spacing: .01em; }
+html[data-skin="glass"] h2 { font-weight: 600; font-size: 1.15rem; }
+html[data-skin="glass"] h3 { font-weight: 600; }
+html[data-skin="glass"] ::selection { background: color-mix(in srgb, var(--gl-accent) 30%, transparent); }
+html[data-skin="glass"] * { scrollbar-color: color-mix(in srgb, var(--gl-accent) 40%, transparent) transparent; }
+html[data-skin="glass"] ::-webkit-scrollbar-thumb { background: color-mix(in srgb, var(--gl-accent) 30%, transparent); border-radius: 8px; }
+html[data-skin="glass"] .gl-noselect, html[data-skin="glass"] .gl-noselect * { user-select: none !important; }
+
+/* ---------- 背景 ---------- */
+#glass-bg { display: none; }
+html[data-skin="glass"] #glass-bg { display: block; position: fixed; inset: 0; z-index: -2; overflow: hidden; background: var(--gl-base); pointer-events: none; }
+.gb-bub { position: absolute; inset: 0; }
+.gb-bub > i {
+  position: absolute; left: 0; top: 0; border-radius: 50%;
+  background: radial-gradient(circle at 34% 30%, var(--gl-b-core) 0%, var(--gl-b-mid) 46%, var(--gl-b-edge) 100%);
+  box-shadow: inset 0 0 0 1.5px var(--gl-b-rim), inset -18px -26px 60px -10px var(--gl-b-shade), 0 20px 60px -20px var(--gl-b-shade);
+}
+.gb-wall {
+  position: absolute; inset: 0; display: none;
+  background-image: var(--gw-img, none); background-repeat: no-repeat; background-size: var(--gw-size, cover);
+  background-position: calc(var(--gw-x, 0px) - var(--ox, 0px) + var(--gm, 0px)) calc(var(--gw-y, 0px) - var(--oy, 0px) + var(--gm, 0px));
+}
+html[data-glass-bg="wall"] .gb-wall { display: block; }
+html[data-glass-bg="wall"] .gb-bub { display: none; }
+
+/* ---------- 每块玻璃里的背景副本（glass.js 放进去） ---------- */
+.gl-bg { display: none; }
+html[data-skin="glass"] .gl-on { position: relative; isolation: isolate; }
+html[data-skin="glass"] .gl-bg {
+  display: block; position: absolute; inset: 0; z-index: -1; border-radius: inherit; overflow: hidden; pointer-events: none;
+}
+html[data-skin="glass"] .gl-src { position: absolute; display: block; overflow: hidden; background: var(--gl-base); }
+html[data-skin="glass"] .gl-src::after { content: ""; position: absolute; inset: 0; background: var(--gl-ctl-tint); }
+html[data-skin="glass"] .gl-sheet > .gl-bg .gl-src::after { background: var(--gl-sheet-tint); }
+/* 亮边：左上亮、右下暗，鼠标附近更亮；表面一团柔光跟着鼠标 */
+html[data-skin="glass"] .gl-rim { position: absolute; inset: 0; border-radius: inherit; display: block; }
+html[data-skin="glass"] .gl-rim::before,
+html[data-skin="glass"] .gl-plate::before,
+html[data-skin="glass"] .gl-float::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1.2px; pointer-events: none;
+  background:
+    radial-gradient(160px circle at var(--mx, -999px) var(--my, -999px), rgba(255, 255, 255, calc(.95 * var(--gl-hov))), transparent 70%),
+    linear-gradient(135deg, var(--gl-rim-a), var(--gl-rim-b) 38%, var(--gl-rim-b) 62%, var(--gl-rim-a));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  transition: --gl-hov .35s ease;
+}
+html[data-skin="glass"] .gl-rim::after,
+html[data-skin="glass"] .gl-plate::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: radial-gradient(240px circle at var(--mx, -999px) var(--my, -999px), rgba(255, 255, 255, calc(.22 * var(--gl-hov))), transparent 65%);
+  transition: --gl-hov .35s ease;
+}
+html[data-skin="glass"] .gl-on:hover > .gl-bg > .gl-rim,
+html[data-skin="glass"] .gl-on:hover > .gl-bg > .gl-rim::before,
+html[data-skin="glass"] .gl-on:hover > .gl-bg > .gl-rim::after,
+html[data-skin="glass"] .gl-plate:hover::before, html[data-skin="glass"] .gl-plate:hover::after,
+html[data-skin="glass"] .gl-float:hover::before { --gl-hov: 1; }
+/* 大块磨砂上，高光收着一点 */
+html[data-skin="glass"] .gl-sheet:hover > .gl-bg > .gl-rim::after { --gl-hov: .45; }
+
+html[data-skin="glass"] .gl-on {
+  box-shadow: 0 10px 30px -12px var(--gl-shade), 0 2px 6px -3px var(--gl-shade), inset 0 1px 0 var(--gl-glow);
+}
+/* 卡片、气泡这些「玻璃片」：一层淡色 + 亮边，让下面的大块磨砂透上来 */
+html[data-skin="glass"] .gl-plate {
+  position: relative; background: var(--gl-plate);
+  box-shadow: 0 8px 24px -14px var(--gl-shade), inset 0 1px 0 var(--gl-glow);
+}
+/* 浮层：透过去看底下的界面 */
+html[data-skin="glass"] .gl-float {
+  background: var(--gl-float-tint) !important; border: 0 !important;
+  -webkit-backdrop-filter: blur(18px) saturate(160%); backdrop-filter: blur(18px) saturate(160%);
+  box-shadow: 0 24px 60px -18px var(--gl-shade), 0 4px 12px -6px var(--gl-shade), inset 0 1px 0 var(--gl-glow);
+}
+
+/* ---------- 布局：侧边栏和内容区都是浮在背景上的大块玻璃 ---------- */
+html[data-skin="glass"] .shell { height: 100vh; min-height: 0; gap: 14px; padding: 14px; overflow: hidden; }
+html[data-skin="glass"] .side {
+  position: relative; top: 0; height: calc(100vh - 28px); border-right: 0; border-radius: 26px; padding: 22px 12px 16px;
+}
+html[data-skin="glass"] .shell.collapsed .side { padding: 22px 8px 16px; }
+html[data-skin="glass"] .main {
+  height: calc(100vh - 28px); overflow-y: auto; overflow-x: hidden; border-radius: 26px; padding: 28px clamp(20px, 3vw, 44px) 34px;
+}
+html[data-skin="glass"] .main.is-chat { padding-bottom: 18px; }
+html[data-skin="glass"] .chat { height: calc(100vh - 28px - 28px - 18px); }
+html[data-skin="glass"] .brand { margin-bottom: 22px; padding-left: 6px; }
+html[data-skin="glass"] .brand-mark { color: var(--gl-accent); }
+html[data-skin="glass"] .side-toggle { top: 26px; right: 8px; border-radius: 12px; }
+
+/* 侧边栏的选项 + 那块会流过去的玻璃 */
+html[data-skin="glass"] .nav { position: relative; gap: 4px; }
+html[data-skin="glass"] .nav a { z-index: 1; border-radius: 14px; padding: 9px 14px; transition: color .25s; }
+html[data-skin="glass"] .nav a:hover { transform: none; color: var(--ink); }
+html[data-skin="glass"] .nav a.on { font-weight: 600; }
+html[data-skin="glass"] .nav a .ico { font-size: 20px; }
+.gl-navpill { display: none; }
+html[data-skin="glass"] .gl-navpill {
+  display: block; position: absolute; left: 0; right: 0; top: 0; height: 44px; z-index: 0; border-radius: 14px;
+  transform-origin: 50% 50%; will-change: transform; pointer-events: none;
+  transition: opacity .25s, box-shadow .25s;
+}
+html[data-skin="glass"] .gl-navpill > .gl-bg .gl-src::after { background: color-mix(in srgb, var(--gl-tint-c) 40%, transparent); }
+html[data-skin="glass"] .gl-navpill.lifted { z-index: 2; box-shadow: 0 16px 34px -10px var(--gl-shade), 0 0 0 1px var(--gl-rim-b); background: rgba(255, 255, 255, .06); }
+html[data-skin="glass"] .gl-navpill.lifted > .gl-bg { opacity: 0; transition: opacity .15s; }
+html[data-skin="glass"] .gl-navpill > .gl-bg { transition: opacity .25s; }
+html[data-skin="glass"] .nav .nav-sep { display: block; height: 1px; margin: 8px 12px; background: linear-gradient(90deg, transparent, var(--gl-rim-b), transparent); }
+html[data-skin="glass"] .side-foot { gap: 10px; }
+
+/* ---------- 按钮、标签、输入框：液态玻璃 ---------- */
+html[data-skin="glass"] .btn {
+  border-radius: 999px; min-height: 38px; padding: 4px 18px; font-weight: 500;
+  transition: color .25s;
+}
+html[data-skin="glass"] .btn:hover, html[data-skin="glass"] .btn:active { transform: none; }
+html[data-skin="glass"] .btn.primary { color: #fff; }
+html[data-skin="glass"] .btn.primary > .gl-bg .gl-src::after { background: color-mix(in srgb, var(--gl-accent) 72%, transparent); }
+html[data-skin="glass"] .btn.danger { color: var(--warm); }
+html[data-skin="glass"] .btn[disabled] { opacity: .5; }
+html[data-skin="glass"] .btn.save-btn { background: none; }
+html[data-skin="glass"] .btn.save-btn.dirty { color: #fff; background: none; }
+html[data-skin="glass"] .btn.save-btn.dirty > .gl-bg .gl-src::after { background: color-mix(in srgb, var(--warm) 70%, transparent); }
+html[data-skin="glass"] .chip { border-radius: 999px; padding: 1px 10px; }
+html[data-skin="glass"] .chip.filter { padding: 3px 12px; }
+html[data-skin="glass"] .chip.filter.on { color: #fff; }
+html[data-skin="glass"] .chip.filter.on > .gl-bg .gl-src::after { background: color-mix(in srgb, var(--gl-accent) 70%, transparent); }
+html[data-skin="glass"] .chip.filter.on .n { color: rgba(255, 255, 255, .8); }
+html[data-skin="glass"] .input-wrap { border-radius: 14px; }
+html[data-skin="glass"] .input-wrap > .gl-bg .gl-src::after { background: color-mix(in srgb, var(--gl-tint-c) 30%, transparent); }
+html[data-skin="glass"] .input-wrap { box-shadow: inset 0 1px 3px var(--gl-shade), 0 1px 0 var(--gl-glow); }
+html[data-skin="glass"] .input, html[data-skin="glass"] .textarea { padding: 9px 14px; }
+html[data-skin="glass"] select.input option, html[data-skin="glass"] .model-pick option { background: var(--paper); color: var(--ink); }
+
+/* ---------- 开关：轨道是玻璃，小圆点是一颗玻璃水滴；打开时是主题紫 ---------- */
+html[data-skin="glass"] .switch .track { width: 54px; height: 30px; border-radius: 999px; position: relative; }
+html[data-skin="glass"] .switch .track > .gl-bg .gl-src::after { transition: background-color .3s; }
+html[data-skin="glass"] .switch input:checked + .track > .gl-bg .gl-src::after { background: color-mix(in srgb, var(--gl-accent) 62%, transparent); }
+html[data-skin="glass"] .switch .knob {
+  top: 3px; left: 3px; width: 24px; height: 24px; border: 0; z-index: 1;
+  background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 1), rgba(255, 255, 255, .86) 60%, rgba(236, 230, 255, .8));
+  box-shadow: 0 2px 6px rgba(40, 20, 90, .28), inset 0 -1px 2px rgba(80, 60, 160, .12);
+  transition: transform .5s var(--gl-spring), background .25s, box-shadow .25s;
+}
+html[data-skin="glass"] .switch input:checked + .track .knob { left: 3px; transform: translateX(24px); background: radial-gradient(circle at 35% 30%, #fff, rgba(255, 255, 255, .9) 60%, rgba(236, 230, 255, .85)); }
+/* 按住：小圆点变成一颗透明透镜（透镜折射由 glass.js 加），放大一点 */
+html[data-skin="glass"] .switch.gl-press .knob { background: rgba(255, 255, 255, .10); box-shadow: 0 6px 16px rgba(40, 20, 90, .3), inset 0 0 0 1.2px rgba(255, 255, 255, .9); transform: scale(1.3); }
+html[data-skin="glass"] .switch.gl-press input:checked + .track .knob { transform: translateX(24px) scale(1.3); }
+html[data-skin="glass"] .switch input:focus-visible + .track { outline: 2px solid var(--gl-accent); outline-offset: 3px; border-radius: 999px; }
+
+/* 滑块：轨道是一道浅浅的槽，圆点是玻璃水滴，按住变大变透明 */
+html[data-skin="glass"] input[type="range"] { -webkit-appearance: none; appearance: none; height: 28px; background: transparent; accent-color: var(--gl-accent); }
+html[data-skin="glass"] input[type="range"]::-webkit-slider-runnable-track { height: 6px; border-radius: 99px; background: color-mix(in srgb, var(--gl-accent) 26%, transparent); box-shadow: inset 0 1px 2px var(--gl-shade); }
+html[data-skin="glass"] input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 22px; height: 22px; margin-top: -8px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff, rgba(255, 255, 255, .85) 60%, rgba(236, 230, 255, .8));
+  box-shadow: 0 2px 6px rgba(40, 20, 90, .3); transition: transform .35s var(--gl-spring), background .2s;
+}
+html[data-skin="glass"] input[type="range"]:active::-webkit-slider-thumb {
+  transform: scale(1.35); background: rgba(255, 255, 255, .14);
+  box-shadow: 0 6px 14px rgba(40, 20, 90, .3), inset 0 0 0 1.2px rgba(255, 255, 255, .95);
+  -webkit-backdrop-filter: blur(1px) saturate(180%) brightness(1.08); backdrop-filter: blur(1px) saturate(180%) brightness(1.08);
+}
+
+/* ---------- 长按拉伸 ---------- */
+html[data-skin="glass"] { --gl-spring: linear(0, .009, .035 2.1%, .141 4.4%, .723 12.9%, .938 16.7%, 1.017 20.5%, 1.043 24.5%, 1.035 28.4%, 1.007 36.8%, .998 41.8%, 1.001 50.7%, 1); }
+html[data-skin="glass"][data-motion="full"] { --gl-spring: linear(0, .013, .05 2.1%, .2 4.4%, .84 12.9%, 1.03 16.7%, 1.09 20.5%, 1.1 24.5%, 1.07 28.4%, .99 36.8%, .985 41.8%, 1.002 50.7%, 1); }
+html[data-skin="glass"][data-motion="off"] { --gl-spring: ease; }
+html[data-skin="glass"] .gl-armed { scale: .985; transition: scale .2s ease; }
+
+/* ---------- 卡片、聊天、列表 ---------- */
+html[data-skin="glass"] .card { border-radius: 22px; }
+html[data-skin="glass"] .stat .num { font-weight: 650; }
+html[data-skin="glass"] .msg { border-radius: 20px; padding: 11px 16px 9px; }
+html[data-skin="glass"] .msg.ai { border-top-left-radius: 8px; }
+html[data-skin="glass"] .msg.me { border-top-right-radius: 8px; background: color-mix(in srgb, var(--gl-accent) 68%, transparent); color: #fff; }
+html[data-skin="glass"] .msg.me .who { color: rgba(255, 255, 255, .75); }
+html[data-skin="glass"] .msg .tool { color: var(--accent); }
+html[data-skin="glass"] .chat-wall, html[data-skin="glass"] [data-act="wall-panel"], html[data-skin="glass"] .wall-panel { display: none !important; }
+html[data-skin="glass"] .has-wall .msg { backdrop-filter: none; }
+html[data-skin="glass"] .compose { padding-top: 14px; }
+html[data-skin="glass"] .timeline::before { border-left: 1.5px solid var(--hatch-strong); }
+html[data-skin="glass"] .timeline li::before { background: var(--gl-plate); border: 1.5px solid var(--gl-accent); box-shadow: 0 0 0 3px var(--hatch); }
+html[data-skin="glass"] .timeline li.away::before { border-style: solid; border-color: var(--ink-3); }
+html[data-skin="glass"] .timeline li { border-radius: 10px; }
+html[data-skin="glass"] .bar { border-radius: 99px; height: 12px; }
+html[data-skin="glass"] .bar > i { left: 2px; top: 2px; bottom: 2px; border-radius: 99px; opacity: 1;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--gl-accent) 60%, #fff), var(--gl-accent)); }
+html[data-skin="glass"] .fact, html[data-skin="glass"] .log li, html[data-skin="glass"] .arch-list li { border-bottom: 1px solid var(--hatch); }
+html[data-skin="glass"] .lined { background-image: repeating-linear-gradient(transparent 0 calc(1.7em - 1px), var(--hatch) calc(1.7em - 1px) 1.7em); }
+html[data-skin="glass"] .day-sep::before, html[data-skin="glass"] .day-sep::after { border-top: 1px solid var(--hatch-strong); opacity: 1; }
+html[data-skin="glass"] .tm-sep, html[data-skin="glass"] .g-opt, html[data-skin="glass"] .g-save-row { border-color: var(--hatch); border-style: solid; }
+html[data-skin="glass"] .lib-path code { background: var(--paper-2); border-radius: 10px; }
+html[data-skin="glass"] .update-notes { border-left: 2px solid var(--gl-accent); }
+html[data-skin="glass"] .save-note { border-radius: 999px; }
+html[data-skin="glass"] .dot { box-shadow: 0 0 0 3px var(--hatch); }
+html[data-skin="glass"] .g-dots i { border-color: var(--hatch-strong); }
+html[data-skin="glass"] .g-dots i.on { background: var(--gl-accent); border-color: var(--gl-accent); }
+html[data-skin="glass"] .tool-card .logo { border-radius: 50%; background: var(--paper-2); }
+
+/* ---------- 弹窗、菜单、提示条：浮在上面的玻璃 ---------- */
+html[data-skin="glass"] .ask-mask, html[data-skin="glass"] .first-mask {
+  background: color-mix(in srgb, var(--gl-base) 30%, transparent); -webkit-backdrop-filter: none; backdrop-filter: none;
+}
+html[data-skin="glass"] .ask, html[data-skin="glass"] .first-card { border-radius: 28px; }
+html[data-skin="glass"] .lang-menu { border-radius: 18px; }
+html[data-skin="glass"] .lang-item { border-radius: 10px; }
+html[data-skin="glass"] .toast { border-radius: 999px; padding: 10px 22px; transition: opacity .25s, transform .5s var(--gl-spring); }
+
+/* ---------- 主题面板（两个主题都用；铅笔主题下是纸片） ---------- */
+.theme-panel {
+  position: fixed; z-index: 40; width: 340px; max-width: calc(100vw - 24px); max-height: calc(100vh - 24px); overflow: visible;   /* 铅笔框画在边外面，不能裁掉 */
+  display: grid; gap: 14px; padding: 18px 20px; background: var(--paper); box-shadow: 0 10px 30px rgba(0, 0, 0, .14);
+}
+.theme-panel[hidden] { display: none; }
+.theme-panel h3 { margin: 0; }
+.theme-panel .tp-lab { font-size: 13px; color: var(--ink-3); margin-bottom: 6px; }
+.theme-panel .tp-row { display: flex; flex-wrap: wrap; gap: 6px; }
+.theme-panel .tp-row .btn { min-height: 34px; padding: 2px 14px; }
+.theme-panel .tp-note { font-size: 12.5px; color: var(--ink-3); margin: 0; }
+html[data-skin="glass"] .theme-panel { border-radius: 26px; overflow: auto; scrollbar-width: none; }
+.nav-theme { display: flex; align-items: center; gap: 12px; padding: 8px 12px; border: 0; background: none; border-radius: 6px; color: var(--ink-2); cursor: pointer; font: inherit; text-align: left; width: 100%; }
+.nav-theme .ico { font-size: 22px; }
+.nav-theme:hover, .nav-theme[aria-expanded="true"] { color: var(--ink); }
+.shell.collapsed .nav-theme { justify-content: center; padding: 10px; }
+.nav-sep { display: block; margin: 6px 12px; border-top: 1px dashed var(--hatch-strong); }
+html[data-skin="glass"] .nav-sep { border-top: 0; }
+html[data-skin="glass"] .nav-theme { border-radius: 14px; padding: 9px 14px; position: relative; z-index: 1; }
+html[data-skin="glass"] .nav-theme .ico { font-size: 20px; }
+html[data-skin="glass"] .nav-theme:hover { background: color-mix(in srgb, var(--gl-tint-c) 22%, transparent); }
+
+@media (max-width: 860px) {
+  html[data-skin="glass"] .shell { gap: 10px; padding: 10px; }
+  html[data-skin="glass"] .side, html[data-skin="glass"] .main { height: calc(100vh - 20px); }
+}
+@media (max-height: 640px) {
+  html[data-skin="glass"] .brand { margin-bottom: 10px; }
+  html[data-skin="glass"] .nav a, html[data-skin="glass"] .nav-theme { padding-top: 6px; padding-bottom: 6px; }
+}
