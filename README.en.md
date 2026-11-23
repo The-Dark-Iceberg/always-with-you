@@ -77,14 +77,14 @@ The rules aren't perfect, and what they can't catch is written down too: [docs/S
 
 **Computer (Windows)**
 
-1. Run the installer `AlwaysWithYou-Setup-x.y.z.exe`. Uninstall from Settings → Apps; it asks whether to keep your memories.
+1. Download and run the installer `AlwaysWithYou-Setup-x.y.z.exe` from [Releases](https://github.com/The-Dark-Iceberg/always-with-you/releases/latest). Uninstall from Settings → Apps; it asks whether to keep your memories.
 2. The character icon appears in the tray and the main window opens. The first time, it shows the risk notice first.
 3. Enter a DeepSeek API key in Settings; in "Who answers", choose DeepSeek or a subscription AI for chat.
 4. (Optional) Settings → Other: download the meaning-search model (about 2.3 GB).
 
 **Phone (Android 14 or later)**
 
-1. Install `AwyRead.apk` and, in its Settings, turn on health data, app usage access and background running.
+1. Install `AwyRead-x.y.z.apk` (from [Releases](https://github.com/The-Dark-Iceberg/always-with-you/releases/latest)) and, in its Settings, turn on health data, app usage access and background running.
 2. On the computer, Settings → Phone: turn on receiving, click "Pair a new phone", and enter the 12-character code under "Pair & transfer" on the phone.
 3. From then on the phone reads once an hour and sends automatically whenever it shares a Wi-Fi network with the computer.
 

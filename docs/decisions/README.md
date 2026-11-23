@@ -264,3 +264,10 @@ ChatGPT 静态审查 0.3.0 提了 7 条，核对后都属实，全部处理：
   以前「这台电脑的地址」会把 VPN（wintun 默认路由优先级最高）、ZeroTier、Radmin、VMware 的地址也列出来，容易填错。
 - 配对码旁边加「复制配对码」。
 - 手机端：连不上时提示「公司、学校的 Wi-Fi 可能不让设备互相连接」；手机自己开热点（电脑连手机热点）时也允许找电脑、上传。
+
+### 0010 补充（2026-11-22）：检查更新改看源码仓库的 Releases
+
+源码仓库公开了，安装包直接发在它的 Releases 里，不再另建 `always-with-you-releases`。电脑端 `updater.RELEASES_REPO` 和设置默认值改成
+`The-Dark-Iceberg/always-with-you`，旧设置里存的老地址读设置时自动换掉（`config.OLD_UPDATE_REPOS`）。
+**发布约定**：标签用电脑版版本号（`vX.Y.Z`），附件 `AlwaysWithYou-Setup-X.Y.Z.exe` 和 `AwyRead-<手机版本>.apk`；
+手机端从附件名读版本（标签和手机版本不一样）。

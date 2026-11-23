@@ -1,6 +1,6 @@
 [project]
 name = "always-with-you"
-version = "0.4.2"
+version = "0.4.3"
 description = "一个时刻陪着你的AI：本地个人记忆库（Windows 桌面程序）"
 license = "MIT"
 requires-python = ">=3.13,<3.14"

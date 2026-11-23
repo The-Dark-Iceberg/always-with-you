@@ -59,7 +59,7 @@ class Settings:
     chat_in_memory: bool = True   # 聊天内容（双方）参与整理，见决定 0011
     chat_in_memory_since: str = ""   # 最近一次打开上面这个开关的时间：关着那段时间的聊天不补进整理
     # 「检查更新」去哪个公开仓库看（只放安装包的发布仓库；源码仓库是私有的）
-    update_repo: str = "The-Dark-Iceberg/always-with-you-releases"
+    update_repo: str = "The-Dark-Iceberg/always-with-you"
 
     # Antigravity 聊天用哪个模型档位。Flash Low 最快；High 会先深度思考，实测一句话要几分钟（2026-11-20）
     antigravity_model: str = "gemini-3.8-flash-low"
@@ -133,9 +133,15 @@ def load(path: Path | None = None) -> Settings:
         if "onboarded" not in data:   # 从旧版本升级上来的老用户：不用再看引导（风险确认还是要看一次）
             s.onboarded = True
         s.raw_retention_days = clean_retention(s.raw_retention_days)   # 手改过的配置文件里可能是乱填的
-    if s.ensure_tokens() or not path.exists():
+    migrated = s.update_repo in OLD_UPDATE_REPOS
+    if migrated:   # 0.4.2 及以前存的是没建成的发布仓库，换成公开的源码仓库
+        s.update_repo = Settings.update_repo
+    if s.ensure_tokens() or migrated or not path.exists():
         save(s, path)
     return s
+
+
+OLD_UPDATE_REPOS = {"The-Dark-Iceberg/always-with-you-releases"}
 
 
 def save(s: Settings, path: Path | None = None) -> None:

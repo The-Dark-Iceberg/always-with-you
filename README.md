@@ -77,14 +77,14 @@ AI 只看得到摘要和记忆，原始记录不出你的电脑。原理详见 [
 
 **电脑（Windows）**
 
-1. 运行安装包 `AlwaysWithYou-Setup-x.y.z.exe`。卸载在「设置 → 应用」里，会问要不要保留记忆。
+1. 从 [Releases](https://github.com/The-Dark-Iceberg/always-with-you/releases/latest) 下载并运行安装包 `AlwaysWithYou-Setup-x.y.z.exe`。卸载在「设置 → 应用」里，会问要不要保留记忆。
 2. 打开后右下角托盘出现角色图标，同时弹出主窗口。第一次会先让你看风险说明。
 3. 「设置」里填 DeepSeek API Key；「由谁来回答」里选聊天用 DeepSeek 还是订阅制 AI。
 4. （可选）「设置 → 其他」下载按意思搜索的模型（约 2.3GB）。
 
 **手机（Android 14 及以上）**
 
-1. 安装 `AwyRead.apk`，在「设置」里把健康数据、应用使用情况、后台运行几项打开。
+1. 安装 `AwyRead-x.y.z.apk`（在 [Releases](https://github.com/The-Dark-Iceberg/always-with-you/releases/latest) 下载），在「设置」里把健康数据、应用使用情况、后台运行几项打开。
 2. 电脑上「设置 → 手机」打开接收，点「配对新手机」，把 12 位配对码填到手机的「配对传输」里。
 3. 之后手机每小时读一次，和电脑连同一个 Wi-Fi 时自动传。
 

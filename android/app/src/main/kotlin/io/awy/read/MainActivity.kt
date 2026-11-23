@@ -309,9 +309,13 @@ class MainActivity : Activity() {
     }
 }
 
-/** 检查更新：看公开发布仓库最新的一版（tag 像 phone-v0.3.0 或 v0.3.0），里面有 .apk 就给下载链接。 */
+/**
+ * 检查更新：看公开仓库 Releases 里的手机版。版本号从附件名 AwyRead-<版本>.apk 里读
+ * （发布的标签是电脑版的版本号，和手机版不一样，不能拿标签比）。取所有发布里版本最大的那个。
+ */
 object Updater {
-    private const val REPO = "$AUTHOR/always-with-you-releases"
+    private const val REPO = "$AUTHOR/always-with-you"
+    private val APK = Regex("^AwyRead-(\\d+\\.\\d+\\.\\d+)\\.apk$")
 
     private fun parts(v: String) = Regex("\\d+").findAll(v).map { it.value.toInt() }.toList()
 
@@ -332,20 +336,24 @@ object Updater {
         c.readTimeout = 10000
         c.setRequestProperty("Accept", "application/vnd.github+json")
         when (val code = c.responseCode) {
-            404 -> "发布仓库还没公开，暂时检查不了更新。等作者公开发布仓库后，这里就能用了。" to null
+            404 -> "找不到发布页（$REPO），过一会儿再试。" to null
             200 -> {
                 val list = org.json.JSONArray(c.inputStream.bufferedReader().use { it.readText() })
-                val release = (0 until list.length()).map { list.getJSONObject(it) }.firstOrNull { r ->
-                    val assets = r.optJSONArray("assets")
-                    assets != null && (0 until assets.length()).any { assets.getJSONObject(it).optString("name").endsWith(".apk") }
+                // 每个正式发布里找 AwyRead-<版本>.apk，取版本最大的
+                var best: Pair<String, String>? = null
+                for (r in (0 until list.length()).map { list.getJSONObject(it) }) {
+                    if (r.optBoolean("draft")) continue
+                    val assets = r.optJSONArray("assets") ?: continue
+                    for (a in (0 until assets.length()).map { assets.getJSONObject(it) }) {
+                        val v = APK.find(a.optString("name"))?.groupValues?.get(1) ?: continue
+                        if (best == null || newer(v, best.first)) best = v to a.optString("browser_download_url")
+                    }
                 }
-                if (release == null) "发布仓库里还没有手机版。" to null
-                else {
-                    val tag = release.optString("tag_name")
-                    val assets = release.getJSONArray("assets")
-                    val apk = (0 until assets.length()).map { assets.getJSONObject(it) }.first { it.optString("name").endsWith(".apk") }
-                    if (newer(tag, current)) "有新版本 $tag（现在是 $current）。" to apk.optString("browser_download_url")
-                    else "已经是最新版本（$current）。" to null
+                val found = best
+                when {
+                    found == null -> "发布页里还没有手机版。" to null
+                    newer(found.first, current) -> "有新版本 ${found.first}（现在是 $current）。" to found.second
+                    else -> "已经是最新版本（$current）。" to null
                 }
             }
             else -> "检查失败（GitHub 返回 $code），过一会儿再试。" to null

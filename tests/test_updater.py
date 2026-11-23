@@ -115,3 +115,15 @@ def test_update_api_flow(monkeypatch):
         assert quit_called
     finally:
         core.store.close()
+
+
+def test_old_update_repo_is_migrated(tmp_path):
+    """0.4.2 及以前的设置里存的是没建成的发布仓库：读设置时自动换成公开的源码仓库，并存回去。"""
+    import json
+    from awy import config
+    p = tmp_path / "config.json"
+    p.write_text(json.dumps({"update_repo": "The-Dark-Iceberg/always-with-you-releases"}), encoding="utf-8")
+    assert config.load(p).update_repo == "The-Dark-Iceberg/always-with-you"
+    assert json.loads(p.read_text(encoding="utf-8"))["update_repo"] == "The-Dark-Iceberg/always-with-you"
+    p.write_text(json.dumps({"update_repo": "someone/fork"}), encoding="utf-8")
+    assert config.load(p).update_repo == "someone/fork"      # 自己改过的不动

@@ -30,7 +30,7 @@ from awy import __version__, paths
 
 log = logging.getLogger(__name__)
 
-RELEASES_REPO = "The-Dark-Iceberg/always-with-you-releases"
+RELEASES_REPO = "The-Dark-Iceberg/always-with-you"   # 源码仓库公开后，安装包直接发在它的 Releases 里（决定 0010 补充）
 API = "https://api.github.com/repos/{repo}/releases?per_page=20"
 USER_AGENT = "AlwaysWithYou-updater"
 ALLOWED_HOSTS = {"github.com", "api.github.com", "objects.githubusercontent.com",
